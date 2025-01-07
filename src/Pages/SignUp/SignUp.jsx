@@ -1,14 +1,49 @@
+import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import ImageUploader from "../../Utilities/ImageUpload/ImageUploader";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data) => {
-        console.log(data)
+    const { updateUserProfile, signUp } = useAuth();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const onSubmit = async (data) => {
+        console.log(data.photo[0])
+        const imageFile = {
+            image: data.photo[0]
+        }
+        const res = await ImageUploader(imageFile);
+
+        if (res.success) {
+            const name = data?.name;
+            const email = data?.email;
+            const password = data?.password;
+            const photoUrl = res?.data?.display_url;
+
+            console.log(name, email, password, photoUrl,)
+
+            const signInRes = await signUp(email, password);
+            if (signInRes) {
+                const updateRes = await updateUserProfile(name, photoUrl);
+                reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your sign up has been successfully done.",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+
+        }
     }
     return (
         <div>
+            <Helmet>
+                <title>Sign up </title>
+            </Helmet>
             <div className="hero bg-base-200 min-h-screen">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <div className="text-center lg:text-left">
