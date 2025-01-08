@@ -14,7 +14,7 @@ const ImageUploader = async (imageFile) => {
         
         const res = await axios.post(image_hosting_url, imageFile, {
             headers: {
-                'Content-Type':  'multipart/form-data',
+                'content-type':  'multipart/form-data',
             }
         })
         return res.data;
