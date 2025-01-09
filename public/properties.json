@@ -1,0 +1,212 @@
+[
+  {
+    "propertyId": "P001",
+    "ownerEmail": "owner1@example.com",
+    "title": "Spacious 3-Bedroom Apartment in Gazipur",
+    "address": {
+      "street": "123 Main Street",
+      "city": "Gazipur",
+      "state": "Dhaka",
+      "postalCode": "1234"
+    },
+    "type": "Apartment",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "monthlyRent": 20000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Water", "Gas", "WiFi", "Kitchen", "Parking"],
+    "size": 1500,
+    "allowedPeople": 6,
+    "description": "A spacious 3-bedroom apartment with modern amenities.",
+    "image": "https://example.com/images/property1.jpg"
+  },
+  {
+    "propertyId": "P002",
+    "ownerEmail": "owner2@example.com",
+    "title": "Modern Condo in Dhaka's Prime Area",
+    "address": {
+      "street": "45 Park Avenue",
+      "city": "Dhaka",
+      "state": "Dhaka",
+      "postalCode": "1205"
+    },
+    "type": "Condo",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "monthlyRent": 15000,
+    "isAvailable": false,
+    "utilitiesIncluded": ["Water", "WiFi", "Kitchen"],
+    "size": 1200,
+    "allowedPeople": 4,
+    "description": "A modern condo located in a prime area.",
+    "image": "https://example.com/images/property2.jpg"
+  },
+  {
+    "propertyId": "P003",
+    "ownerEmail": "owner3@example.com",
+    "title": "Luxurious House with Garden in Gazipur",
+    "address": {
+      "street": "77 Elm Street",
+      "city": "Gazipur",
+      "state": "Dhaka",
+      "postalCode": "1235"
+    },
+    "type": "House",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "monthlyRent": 30000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Gas", "Parking", "WiFi", "Kitchen"],
+    "size": 2000,
+    "allowedPeople": 8,
+    "description": "A luxurious house with a garden and garage.",
+    "image": "https://example.com/images/property3.jpg"
+  },
+  {
+    "propertyId": "P004",
+    "ownerEmail": "owner4@example.com",
+    "title": "Cozy Apartment with Great View in Chittagong",
+    "address": {
+      "street": "12 Maple Road",
+      "city": "Chittagong",
+      "state": "Chittagong",
+      "postalCode": "4100"
+    },
+    "type": "Apartment",
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "monthlyRent": 18000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Water", "Gas", "WiFi", "Kitchen"],
+    "size": 1300,
+    "allowedPeople": 4,
+    "description": "A cozy apartment with a great view.",
+    "image": "https://example.com/images/property4.jpg"
+  },
+  {
+    "propertyId": "P005",
+    "ownerEmail": "owner5@example.com",
+    "title": "Large Family-Friendly Duplex in Dhaka",
+    "address": {
+      "street": "88 Pine Lane",
+      "city": "Dhaka",
+      "state": "Dhaka",
+      "postalCode": "1216"
+    },
+    "type": "Duplex",
+    "bedrooms": 5,
+    "bathrooms": 4,
+    "monthlyRent": 50000,
+    "isAvailable": false,
+    "utilitiesIncluded": ["Gas", "Electricity", "WiFi", "Kitchen", "Parking"],
+    "size": 3000,
+    "allowedPeople": 10,
+    "description": "A large duplex suitable for families.",
+    "image": "https://example.com/images/property5.jpg"
+  },
+  {
+    "propertyId": "P006",
+    "ownerEmail": "owner6@example.com",
+    "title": "Budget-Friendly Apartment in Sylhet",
+    "address": {
+      "street": "99 Sunset Blvd",
+      "city": "Sylhet",
+      "state": "Sylhet",
+      "postalCode": "3100"
+    },
+    "type": "Apartment",
+    "bedrooms": 1,
+    "bathrooms": 1,
+    "monthlyRent": 10000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Water", "WiFi", "Kitchen"],
+    "size": 800,
+    "allowedPeople": 2,
+    "description": "A budget-friendly apartment for singles.",
+    "image": "https://example.com/images/property6.jpg"
+  },
+  {
+    "propertyId": "P007",
+    "ownerEmail": "owner7@example.com",
+    "title": "Beautiful Lakefront House in Gazipur",
+    "address": {
+      "street": "25 Lakeview Drive",
+      "city": "Gazipur",
+      "state": "Dhaka",
+      "postalCode": "1236"
+    },
+    "type": "House",
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "monthlyRent": 25000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Water", "Gas", "WiFi", "Kitchen", "Parking"],
+    "size": 1800,
+    "allowedPeople": 6,
+    "description": "A beautiful house with lakefront views.",
+    "image": "https://example.com/images/property7.jpg"
+  },
+  {
+    "propertyId": "P008",
+    "ownerEmail": "owner8@example.com",
+    "title": "Luxurious Beachside Villa in Cox's Bazar",
+    "address": {
+      "street": "33 Ocean Avenue",
+      "city": "Cox's Bazar",
+      "state": "Chittagong",
+      "postalCode": "4700"
+    },
+    "type": "Villa",
+    "bedrooms": 6,
+    "bathrooms": 5,
+    "monthlyRent": 70000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Water", "Gas", "Electricity", "WiFi", "Kitchen", "Parking"],
+    "size": 4000,
+    "allowedPeople": 12,
+    "description": "A luxurious villa by the beach.",
+    "image": "https://example.com/images/property8.jpg"
+  },
+  {
+    "propertyId": "P009",
+    "ownerEmail": "owner9@example.com",
+    "title": "Affordable Apartment Near Nature in Gazipur",
+    "address": {
+      "street": "11 Forest Hill",
+      "city": "Gazipur",
+      "state": "Dhaka",
+      "postalCode": "1237"
+    },
+    "type": "Apartment",
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "monthlyRent": 12000,
+    "isAvailable": false,
+    "utilitiesIncluded": ["Water", "WiFi", "Kitchen"],
+    "size": 1100,
+    "allowedPeople": 3,
+    "description": "An affordable apartment close to nature.",
+    "image": "https://example.com/images/property9.jpg"
+  },
+  {
+    "propertyId": "P010",
+    "ownerEmail": "owner10@example.com",
+    "title": "High-End Penthouse with City Views in Dhaka",
+    "address": {
+      "street": "50 City Center",
+      "city": "Dhaka",
+      "state": "Dhaka",
+      "postalCode": "1212"
+    },
+    "type": "Penthouse",
+    "bedrooms": 4,
+    "bathrooms": 3,
+    "monthlyRent": 80000,
+    "isAvailable": true,
+    "utilitiesIncluded": ["Water", "Electricity", "WiFi", "Kitchen", "Parking"],
+    "size": 2500,
+    "allowedPeople": 8,
+    "description": "A high-end penthouse with city skyline views.",
+    "image": "https://example.com/images/property10.jpg"
+  }
+]

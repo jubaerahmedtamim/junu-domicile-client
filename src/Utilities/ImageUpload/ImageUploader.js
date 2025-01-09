@@ -3,7 +3,7 @@ import axios from "axios";
 
 const ImageUploader = async (imageFile) => {
     try {
-        const image_hosting_api = import.meta.env.VITE_IMAGE_HOSTING_API_KEY;
+        const image_hosting_api = import.meta.env.VITE_IMAGE_HOSTING_KEY;
         const image_hosting_url = `https://api.imgbb.com/1/upload?key=${image_hosting_api}`;
 
         if (!image_hosting_api) {

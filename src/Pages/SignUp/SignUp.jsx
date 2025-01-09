@@ -1,43 +1,45 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import ImageUploader from "../../Utilities/ImageUpload/ImageUploader";
+import { Link, useNavigate } from "react-router-dom";
+// import ImageUploader from "../../Utilities/ImageUpload/ImageUploader";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 
 
 const SignUp = () => {
     const { updateUserProfile, signUp } = useAuth();
+    const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
-        console.log(data.photo[0])
-        const imageFile = {
-            image: data.photo[0]
+
+        // const imageFile = {
+        //     image: data.photo[0]
+        // }
+        // const res = await ImageUploader(imageFile);
+
+        // if (res.success) {
+        // }
+
+
+        const { name, email, password } = data;
+        // const photoUrl = res?.data?.display_url;
+        const photoUrl = 'Currently on available'
+        console.log(name, email, password)
+
+        const signInRes = await signUp(email, password);
+        if (signInRes) {
+            const updateRes = await updateUserProfile(name, photoUrl);
+            reset();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your sign up has been successfully done.",
+                showConfirmButton: false,
+                timer: 1500
+            })
+            navigate('/');
         }
-        const res = await ImageUploader(imageFile);
 
-        if (res.success) {
-            const name = data?.name;
-            const email = data?.email;
-            const password = data?.password;
-            const photoUrl = res?.data?.display_url;
-
-            console.log(name, email, password, photoUrl,)
-
-            const signInRes = await signUp(email, password);
-            if (signInRes) {
-                const updateRes = await updateUserProfile(name, photoUrl);
-                reset();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Your sign up has been successfully done.",
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            }
-
-        }
     }
     return (
         <div>
@@ -88,7 +90,7 @@ const SignUp = () => {
                                 <label className="label">
                                     <span className="label-text">Profile Picture</span>
                                 </label>
-                                <input {...register('photo', { required: true })} type="file" className="input input-bordered" />
+                                <input {...register('photo')} type="file" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Sign Up</button>
