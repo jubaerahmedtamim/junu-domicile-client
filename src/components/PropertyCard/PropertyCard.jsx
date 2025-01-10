@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
-import { FaBed, FaFire, FaLightbulb, FaMapLocationDot, FaShower, FaWifi } from 'react-icons/fa6';
+import { FaBed, FaFire, FaKitchenSet, FaLightbulb, FaMapLocationDot, FaShower, FaWifi } from 'react-icons/fa6';
 import { GiHouse } from 'react-icons/gi';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -14,11 +14,11 @@ import { TbCurrencyTaka } from 'react-icons/tb';
 
 
 const PropertyCard = ({ property }) => {
-    const {title, address, type, bedrooms, bathrooms, monthlyRent, size, allowedPeople, image } = property;
-    const [isFavorite, setIsFavorite] = useState(true);
+    const { title, address, type, bedrooms, bathrooms, monthlyRent,utilitiesIncluded, size, allowedPeople, image } = property;
+    const [isFavorite, setIsFavorite] = useState(false);
     return (
         <div>
-            <Card sx={{ maxWidth: 350 }}>
+            <Card sx={{ maxWidth: 400 }}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
@@ -33,7 +33,7 @@ const PropertyCard = ({ property }) => {
                                 <p className='flex justify-center items-center'><TbCurrencyTaka />{monthlyRent}/month</p>
                             </div>
                             {/* favorite property or not? */}
-                            <div onClick={() => setIsFavorite(!isFavorite)} className=' text-white'>
+                            <div onClick={() => setIsFavorite(!isFavorite)}>
                                 <Tooltip title="Add to favorite" placement="left">
                                     {
                                         isFavorite ? <FavoriteIcon className='text-rose-500'></FavoriteIcon> : <FavoriteBorderIcon></FavoriteBorderIcon>
@@ -43,47 +43,56 @@ const PropertyCard = ({ property }) => {
                         </div>
                         <h3 className='text-base font-semibold mb-2'>{title}</h3>
                         <div className='flex flex-col justify-between mb-4 gap-2'>
-                            <div className='flex items-center gap-2 text-sm'>
+                            <div className='flex items-center gap-2 text-sm '>
                                 <FaMapLocationDot />
-                                <p>{Object.values(address).join(', ')}</p>
+                                <p className='text-slate-600' >{Object.values(address).join(', ')}</p>
                             </div>
                             <div className='flex items-center gap-2 text-sm'>
                                 <GiHouse />
-                                <p>{type}</p>
+                                <p className='text-slate-600' >{type}</p>
                             </div>
                         </div>
                         <div className='flex justify-between'>
                             <div className='flex items-center gap-2 text-sm'>
                                 <FaBed />
-                                <p>{bedrooms}</p>
+                                <p className='text-slate-600'>{bedrooms}</p>
                             </div>
                             <div className='flex items-center gap-2 text-sm'>
                                 <FaShower />
-                                <p>{bathrooms}</p>
+                                <p className='text-slate-600'>{bathrooms}</p>
                             </div>
                             <div className='flex items-center gap-2 text-sm'>
                                 <MdOutlineFamilyRestroom />
-                                <p>{allowedPeople}</p>
+                                <p className='text-slate-600'>{allowedPeople}</p>
                             </div>
                         </div>
                         <hr className='my-3' />
                         <div className='flex justify-between'>
-                            <div className='flex flex-col items-center text-sm'>
-                                <p className='text-sm'>WIFI</p>
-                                <FaWifi />
-                            </div>
-                            <div className='flex flex-col items-center text-sm'>
+                            {
+                                utilitiesIncluded.includes('WiFi') &&
+                                <div className='flex flex-col items-center text-sm'>
+                                    <p className='text-sm '>WIFI</p>
+                                    <FaWifi />
+                                </div>
+                            }
+                            {
+                                utilitiesIncluded.includes('Gas') &&
+                                <div className='flex flex-col items-center text-sm'>
                                 <p className='text-sm'>Gas</p>
                                 <FaFire />
-                            </div>
-                            <div className='flex flex-col items-center text-sm'>
+                            </div>}
+                           { utilitiesIncluded.includes('Parking') && <div className='flex flex-col items-center text-sm'>
                                 <p className='text-sm'>Parking</p>
                                 <FaParking />
-                            </div>
-                            <div className='flex flex-col items-center text-sm'>
+                            </div>}
+                            { utilitiesIncluded.includes('Electricity') &&<div className='flex flex-col items-center text-sm'>
                                 <p className='text-sm'>Electricity</p>
                                 <FaLightbulb />
-                            </div>
+                            </div>}
+                            { utilitiesIncluded.includes('Kitchen') &&<div className='flex flex-col items-center text-sm'>
+                                <p className='text-sm'>Kitchen</p>
+                                <FaKitchenSet />
+                            </div>}
                         </div>
 
                     </CardContent>
