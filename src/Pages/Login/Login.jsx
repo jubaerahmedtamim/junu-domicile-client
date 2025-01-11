@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import SocialLogin from "../../components/SocialLogin/SocialLogin";
 
 
 const Login = () => {
@@ -51,10 +52,15 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
-                            <div className="form-control mt-6">
+                            <div className="form-control mt-2">
                                 <button className="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        <div className="divider w-3/4 mx-auto mt-0"></div>
+                        <div className="flex justify-center">
+                            <SocialLogin></SocialLogin>
+                        </div>
+                        <div className="divider w-3/4 mx-auto"></div>
                         <div className="flex justify-center items-center my-5">
                             <p>New to this site? <Link to={'/signup'} className="text-blue-600">Sign Up</Link> </p>
                         </div>

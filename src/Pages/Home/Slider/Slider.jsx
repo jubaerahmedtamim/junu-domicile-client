@@ -9,12 +9,12 @@ import img4 from '../../../assets/SliderImages/Senior Living Community.jpg'
 
 const Slider = () => {
     return (
-        <div>
+        <div >
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
                 autoplay={{
-                    delay: 2500,
+                    delay: 3000,
                     disableOnInteraction: false,
                 }}
                 pagination={{
@@ -22,7 +22,7 @@ const Slider = () => {
                 }}
                 navigation={true}
                 modules={[Autoplay, Pagination, Navigation]}
-                className="mySwiper h-[600px]"
+                className="mySwiper  h-auto md:h-[700px]"
             >
                 <SwiperSlide> <img  src={img1} alt="" /> </SwiperSlide>
                 <SwiperSlide> <img  src={img3} alt="" /> </SwiperSlide>

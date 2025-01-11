@@ -4,6 +4,9 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import AllProperties from "../Pages/AllProperties/AllProperties";
+import Dashboard from "../Layouts/Dashboard";
+import Booking from "../Pages/Dashboard/User/Booking/Booking";
+import UserDashboard from "../Pages/Dashboard/User/UserDashboard/UserDashboard";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +29,20 @@ export const router = createBrowserRouter([
                 path: 'all-properties',
                 element: <AllProperties></AllProperties>,
             },
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                path: 'UserDashboard',
+                element: <UserDashboard></UserDashboard>,
+            },
+            {
+                path: 'booking',
+                element: <Booking></Booking>
+            }
         ]
     }
 ])

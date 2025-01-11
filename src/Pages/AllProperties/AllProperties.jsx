@@ -14,7 +14,7 @@ const AllProperties = () => {
         })
     },[])
     return (
-        <div>
+        <div className="max-w-screen-xl mx-auto">
             <Helmet>
                 <title>All Properties</title>
             </Helmet>

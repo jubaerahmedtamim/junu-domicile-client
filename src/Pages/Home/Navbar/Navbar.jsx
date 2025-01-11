@@ -18,7 +18,7 @@ const Navbar = () => {
 
 
     return (
-        <div>
+        <div className=" w-full">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -50,6 +50,9 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    <div>
+                        <NavLink to={'/dashboard'} className='btn btn-outline btn-sm mr-2'>Dashboard</NavLink>
+                    </div>
                     {
                         user ? <>
                             <div className="dropdown dropdown-end">
