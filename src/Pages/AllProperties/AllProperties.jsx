@@ -19,7 +19,7 @@ const AllProperties = () => {
                 <title>All Properties</title>
             </Helmet>
             <SectionTitle subHeading={'Find your property & book now'} heading={'Explore your dream city.'}></SectionTitle>
-            <div className='grid grid-cols-3 gap-10 justify-between items-center'>
+            <div className='grid grid-cols-1 mx-4 md:grid-cols-3 gap-10 justify-between items-center'>
                 {
                     properties.map(property => <PropertyCard key={property.propertyId} property={property}></PropertyCard>)
                 }

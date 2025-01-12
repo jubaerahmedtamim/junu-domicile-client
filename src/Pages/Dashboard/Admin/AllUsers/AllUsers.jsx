@@ -6,6 +6,7 @@ import { FaTrash } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import EllipsisText from '../../../../components/EllipsisText/EllipsisText ';
+import SelectRole from '../../../../components/SelectRole/SelectRole';
 
 
 const AllUsers = () => {
@@ -78,13 +79,16 @@ const AllUsers = () => {
                                         <td>{index + 1}</td>
                                         <td>{user?.name}</td>
                                         <td><EllipsisText text={user?.email} maxLength={10}></EllipsisText></td>
-                                        <td>{user?.role || "user"}</td>
+                                        {/* role based task */}
+                                        <td>
+                                            <SelectRole user={user} refetch={refetch}></SelectRole>
+                                        </td>
                                         <td>
                                             <button
                                                 onClick={() => handleDeleteUser(user?._id)}
                                                 className="btn btn-circle btn-sm btn-outline text-rose-700"
                                             >
-                                                <FaTrash />
+                                                <FaTrash className='text-xs md:text-lg' />
                                             </button>
                                         </td>
                                     </tr>

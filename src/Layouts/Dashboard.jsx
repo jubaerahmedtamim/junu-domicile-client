@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { FaHome } from "react-icons/fa";
+import { FaUsersGear } from "react-icons/fa6";
 import { ImCancelCircle } from "react-icons/im";
 import { LuCircleArrowRight } from "react-icons/lu";
 
@@ -16,14 +17,14 @@ const Dashboard = () => {
     const [isOpen, setIsOpen] = useState(false)
     return (
         <div className="flex md:max-w-7xl mx-auto">
-            <div className=' md:hidden'>
+            <div className={` md:hidden ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 ease-in-out`}>
                 {
                     isOpen ?
-                        <button onClick={() => setIsOpen(!isOpen)} className="relative top-2 left-28 ">
+                        <button onClick={() => setIsOpen(!isOpen)} className="relative invisible top-2 left-28 ">
                             <ImCancelCircle />
                         </button>
                         :
-                        <button onClick={() => setIsOpen(!isOpen)} className=" relative top-2 left-2">
+                        <button onClick={() => setIsOpen(!isOpen)} className=" relative top-2 left-5">
                             <LuCircleArrowRight />
                         </button>
                 }
@@ -36,7 +37,7 @@ const Dashboard = () => {
                                 <>
                                     <li> <NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink> </li>
                                     <li> <NavLink to={'/dashboard/bookings'}>Manage Users</NavLink> </li>
-                                    <li> <NavLink to={'/dashboard/allUsers'}>All Users</NavLink> </li>
+                                    <li> <NavLink to={'/dashboard/allUsers'}> <FaUsersGear />All Users</NavLink> </li>
                                 </>
                                 :
                                 isHost ?
@@ -73,13 +74,14 @@ const Dashboard = () => {
                                         <ImCancelCircle />
                                     </button>
                                     :
-                                    <button onClick={() => setIsOpen(!isOpen)} className=" relative top-2 left-2">
+                                    <button onClick={() => setIsOpen(!isOpen)} className=" relative invisible top-2 left-2">
                                         <LuCircleArrowRight />
                                     </button>
                             }
                         </div>
                     </div>
-                    <nav className="">
+                    {/* mobile devices */}
+                    <nav >
                         <div className=" w-full md:w-64  min-h-screen bg-cyan-600 text-white">
                             <ul className="menu text-xs">
                                 {
@@ -106,7 +108,7 @@ const Dashboard = () => {
                                             </>
                                 }
 
-                                <div className="w-1/2">
+                                <div>
                                     <div className="divider"></div>
                                 </div>
                                 <div className="menu">
