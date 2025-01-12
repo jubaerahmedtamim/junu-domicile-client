@@ -13,7 +13,7 @@ const Login = () => {
     const onSubmit = (data) => {
         singIn(data.email, data.password)
         .then(res => {
-            console.log(res);
+            console.log(res.user);
         })
     }
 

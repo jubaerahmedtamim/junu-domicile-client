@@ -5,10 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin/SocialLogin";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+
+
 
 
 const SignUp = () => {
     const { updateUserProfile, signUp } = useAuth();
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = async (data) => {
@@ -27,18 +31,28 @@ const SignUp = () => {
         const photoUrl = 'Currently on available'
         console.log(name, email, password)
 
+        const userInfo = {
+            name,
+            email
+        }
+
         const signInRes = await signUp(email, password);
         if (signInRes) {
             const updateRes = await updateUserProfile(name, photoUrl);
-            reset();
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your sign up has been successfully done.",
-                showConfirmButton: false,
-                timer: 1500
-            })
-            navigate('/');
+            const res = await axiosPublic.post('/users', userInfo);
+            
+            if (res.data.insertedId) {
+                reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your sign up has been successfully done.",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                navigate('/');
+            }
+
         }
 
     }
