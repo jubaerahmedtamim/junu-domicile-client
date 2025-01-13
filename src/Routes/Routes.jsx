@@ -9,6 +9,9 @@ import Booking from "../Pages/Dashboard/User/Booking/Booking";
 import UserDashboard from "../Pages/Dashboard/User/UserDashboard/UserDashboard";
 import AllUsers from "../Pages/Dashboard/Admin/AllUsers/AllUsers";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
+import PaymentsHistory from "../Pages/Dashboard/Admin/PaymentsHistory/PaymentsHistory";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AdminRoute from "../AdminRoute/AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -29,13 +32,13 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'all-properties',
-                element: <AllProperties></AllProperties>,
+                element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute>,
             },
         ]
     },
     {
         path: 'dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <AdminRoute><Dashboard></Dashboard></AdminRoute>,
         children: [
             // admin
             {
@@ -49,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path: 'allUsers',
                 element: <AllUsers></AllUsers>,
+            },
+            {
+                path: 'paymentsHistory',
+                element: <PaymentsHistory></PaymentsHistory> ,
             },
             {
                 path: 'UserDashboard',

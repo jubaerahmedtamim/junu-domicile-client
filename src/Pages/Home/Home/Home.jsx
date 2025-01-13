@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-import PropertyCard from "../../../components/PropertyCard/PropertyCard";
 import Slider from "../Slider/Slider";
+
 
 const Home = () => {
     return (
@@ -10,6 +9,7 @@ const Home = () => {
                 <title>Home</title>
             </Helmet>
             <Slider></Slider>
+            
         </div>
     );
 };

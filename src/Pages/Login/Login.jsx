@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -10,10 +10,16 @@ import SocialLogin from "../../components/SocialLogin/SocialLogin";
 const Login = () => {
     const { singIn } = useAuth();
     const {register, handleSubmit, formState: {errors}} = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/'
+    
     const onSubmit = (data) => {
         singIn(data.email, data.password)
         .then(res => {
-            console.log(res.user);
+            // console.log(res.user);
+            navigate(from, {replace: true})
         })
     }
 

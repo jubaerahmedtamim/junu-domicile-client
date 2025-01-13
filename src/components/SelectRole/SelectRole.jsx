@@ -68,7 +68,7 @@ const SelectRole = ({ user, refetch }) => {
     return (
         <div>
             <div className="flex items-center gap-1">
-                <p className="text-xs md:text-sm font-semibold">{role || 'User'}</p>
+                <p className={`text-xs md:text-sm font-semibold ${role === 'admin' && 'text-red-600'} ${role === 'host' && 'text-green-600'}`}>{role || 'User'}</p>
                 <button className="bg-cyan-600 px-1 md:px-2 py-1 rounded-md text-white text-xs md:text-sm" onClick={handleClickOpen} ><LiaExchangeAltSolid /></button>
             </div>
             <Dialog disableEscapeKeyDown open={open} onClose={handleClose}>

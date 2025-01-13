@@ -1,9 +1,10 @@
 
 import { useState } from "react";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaHouseUser } from "react-icons/fa";
 import { FaUsersGear } from "react-icons/fa6";
 import { ImCancelCircle } from "react-icons/im";
 import { LuCircleArrowRight } from "react-icons/lu";
+import { MdPayment } from "react-icons/md";
 
 import { Link, NavLink, Outlet } from "react-router-dom";
 
@@ -35,24 +36,24 @@ const Dashboard = () => {
                         {
                             isAdmin ?
                                 <>
-                                    <li> <NavLink to={'/dashboard/adminHome'}>Admin Home</NavLink> </li>
-                                    <li> <NavLink to={'/dashboard/bookings'}>Manage Users</NavLink> </li>
+                                    <li> <NavLink to={'/dashboard/adminHome'}> <FaHouseUser />Admin Home</NavLink> </li>
+                                    <li> <NavLink to={'/dashboard/paymentsHistory'}> <MdPayment /> Payments History</NavLink> </li>
                                     <li> <NavLink to={'/dashboard/allUsers'}> <FaUsersGear />All Users</NavLink> </li>
                                 </>
                                 :
                                 isHost ?
                                     <>
-                                        <li> <NavLink to={'/dashboard/adminHome'}>Host Home</NavLink> </li>
-                                        <li> <NavLink to={'/dashboard/addItems'}>HOst Add Items</NavLink> </li>
-                                        <li> <NavLink to={'/dashboard/manageItems'}>Mange Items</NavLink> </li>
+                                        <li> <NavLink to={'/dashboard/ownerHome'}>Owner Home</NavLink> </li>
+                                        <li> <NavLink to={'/dashboard/addProperties'}> Add Properties</NavLink> </li>
+                                        <li> <NavLink to={'/dashboard/manageProperties'}>Mange Properties</NavLink> </li>
                                         <li> <NavLink to={'/dashboard/bookings'}>Manage Booking</NavLink> </li>
-                                        <li> <NavLink to={'/dashboard/users'}>All Users</NavLink> </li>
+                                        <li> <NavLink to={'/dashboard/tenants'}>All Tenants</NavLink> </li>
                                     </>
                                     :
                                     <>
-                                        <li><NavLink to={'UserDashboard'}> User Home</NavLink> </li>
-                                        <li><NavLink to={'booking'}>My Bookings</NavLink> </li>
-                                        <li><NavLink to={'payments'}>Payments History</NavLink> </li>
+                                        <li><NavLink to={'/dashboard/userDashboard'}> User Home</NavLink> </li>
+                                        <li><NavLink to={'/dashboard/booking'}>My Bookings</NavLink> </li>
+                                        <li><NavLink to={'/dashboard/payments'}>My Payments</NavLink> </li>
                                     </>
                         }
 
