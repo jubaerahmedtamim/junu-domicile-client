@@ -7,13 +7,16 @@ import { LuCircleArrowRight } from "react-icons/lu";
 import { MdPayment } from "react-icons/md";
 
 import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
+import useHost from "../hooks/useHost";
 
 
 
 const Dashboard = () => {
 
-    const isAdmin = true;
-    const isHost = false;
+    const [isAdmin ] = useAdmin();
+    const [isHost] = useHost();
+
 
     const [isOpen, setIsOpen] = useState(false)
     return (

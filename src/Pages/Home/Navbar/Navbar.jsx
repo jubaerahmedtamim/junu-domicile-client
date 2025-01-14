@@ -1,9 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
+import useHost from "../../../hooks/useHost";
 
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+  
 
     const navLinks = <>
         <li><NavLink to={'/'}>Home</NavLink> </li>
@@ -72,7 +75,7 @@ const Navbar = () => {
                                             <span className="badge">New</span>
                                         </a>
                                     </li>
-                                    <li><a>Settings</a></li>
+                                    {/* <li><a>{isAdmin? "Admin": isHost ? 'host': 'User'}</a></li> */}
                                     <li onClick={handleLogout}><a>Logout</a></li>
                                 </ul>
                             </div>

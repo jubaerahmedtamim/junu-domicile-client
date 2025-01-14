@@ -11,7 +11,7 @@ const useAxiosSecure = () => {
     // request interceptor
     axiosSecure.interceptors.request.use((config)=>{
         const token = localStorage.getItem('access-token');
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.authorization = `Bearer ${token}`;
         return config;
     }, (error)=>{
 
