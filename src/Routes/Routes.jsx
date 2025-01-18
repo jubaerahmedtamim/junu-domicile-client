@@ -12,6 +12,8 @@ import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import PaymentsHistory from "../Pages/Dashboard/Admin/PaymentsHistory/PaymentsHistory";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import AddProperty from "../Pages/Dashboard/Host/AddProperty/AddProperty";
+import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +35,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-properties',
                 element: <PrivateRoute><AllProperties></AllProperties></PrivateRoute>,
+            },
+            {
+                path: 'propertyDetails/:id',
+                element: <PrivateRoute> <PropertyDetails></PropertyDetails> </PrivateRoute>,
             },
         ]
     },
@@ -57,6 +63,12 @@ export const router = createBrowserRouter([
                 path: 'paymentsHistory',
                 element: <PaymentsHistory></PaymentsHistory> ,
             },
+            // hosts
+            {
+                path: 'addProperties',
+                element: <AddProperty></AddProperty>,
+            },
+            // users
             {
                 path: 'UserDashboard',
                 element: <UserDashboard></UserDashboard>,

@@ -6,13 +6,14 @@ import useHost from "../../../hooks/useHost";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
-  
+    const [isAdmin] = useAdmin();
+    const [isHost] = useHost();
 
     const navLinks = <>
         <li><NavLink to={'/'}>Home</NavLink> </li>
         <li><NavLink to={'/contact'}>Contact</NavLink> </li>
         <li><NavLink to={'/all-properties'}>All Property</NavLink> </li>
-        
+
     </>
 
     const handleLogout = () => {
@@ -75,7 +76,7 @@ const Navbar = () => {
                                             <span className="badge">New</span>
                                         </a>
                                     </li>
-                                    {/* <li><a>{isAdmin? "Admin": isHost ? 'host': 'User'}</a></li> */}
+                                    <li><a>Role: {isAdmin? "Admin": isHost ? 'host': 'User'}</a></li>
                                     <li onClick={handleLogout}><a>Logout</a></li>
                                 </ul>
                             </div>

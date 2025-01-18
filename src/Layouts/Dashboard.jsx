@@ -47,7 +47,7 @@ const Dashboard = () => {
                                 isHost ?
                                     <>
                                         <li> <NavLink to={'/dashboard/ownerHome'}>Owner Home</NavLink> </li>
-                                        <li> <NavLink to={'/dashboard/addProperties'}> Add Properties</NavLink> </li>
+                                        <li> <NavLink to={'/dashboard/addProperties'}> Add Property</NavLink> </li>
                                         <li> <NavLink to={'/dashboard/manageProperties'}>Mange Properties</NavLink> </li>
                                         <li> <NavLink to={'/dashboard/bookings'}>Manage Booking</NavLink> </li>
                                         <li> <NavLink to={'/dashboard/tenants'}>All Tenants</NavLink> </li>

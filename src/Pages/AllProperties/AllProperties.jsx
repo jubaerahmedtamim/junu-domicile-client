@@ -10,7 +10,7 @@ const AllProperties = () => {
         .then(res => res.json())
         .then(data => {
             setProperties(data)
-            console.log(data);
+            // console.log(data);
         })
     },[])
     return (
@@ -21,6 +21,7 @@ const AllProperties = () => {
             <SectionTitle subHeading={'Find your property & book now'} heading={'Explore your dream city.'}></SectionTitle>
             <div className='grid grid-cols-1 mx-4 md:grid-cols-3 gap-10 justify-between items-center'>
                 {
+                    // TODO: propertyId will be change according to database _id
                     properties.map(property => <PropertyCard key={property.propertyId} property={property}></PropertyCard>)
                 }
             </div>

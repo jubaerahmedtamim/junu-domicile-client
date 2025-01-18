@@ -11,14 +11,21 @@ import { MdOutlineFamilyRestroom } from 'react-icons/md';
 import { Tooltip } from '@mui/material';
 import { FaParking } from 'react-icons/fa';
 import { TbCurrencyTaka } from 'react-icons/tb';
+import { useNavigate } from 'react-router-dom';
 
 
 const PropertyCard = ({ property }) => {
-    const { title, address, type, bedrooms, bathrooms, monthlyRent,utilitiesIncluded, size, allowedPeople, image } = property;
+    // propertyId will be change according to database _id
+    const { title, address, type, bedrooms, bathrooms, monthlyRent, utilitiesIncluded, size, allowedPeople, image, propertyId } = property;
     const [isFavorite, setIsFavorite] = useState(false);
+    const navigate = useNavigate();
+
+    const handleDetailsPage = (id) => {
+        navigate(`/propertyDetails/${id}`)
+    }
     return (
         <div>
-            <Card sx={{ maxWidth: 400 }}>
+            <Card onClick={()=>handleDetailsPage(propertyId)} sx={{ maxWidth: 400 }}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
@@ -78,23 +85,22 @@ const PropertyCard = ({ property }) => {
                             {
                                 utilitiesIncluded.includes('Gas') &&
                                 <div className='flex flex-col items-center text-sm'>
-                                <p className='text-sm'>Gas</p>
-                                <FaFire />
-                            </div>}
-                           { utilitiesIncluded.includes('Parking') && <div className='flex flex-col items-center text-sm'>
+                                    <p className='text-sm'>Gas</p>
+                                    <FaFire />
+                                </div>}
+                            {utilitiesIncluded.includes('Parking') && <div className='flex flex-col items-center text-sm'>
                                 <p className='text-sm'>Parking</p>
                                 <FaParking />
                             </div>}
-                            { utilitiesIncluded.includes('Electricity') &&<div className='flex flex-col items-center text-sm'>
+                            {utilitiesIncluded.includes('Electricity') && <div className='flex flex-col items-center text-sm'>
                                 <p className='text-sm'>Electricity</p>
                                 <FaLightbulb />
                             </div>}
-                            { utilitiesIncluded.includes('Kitchen') &&<div className='flex flex-col items-center text-sm'>
+                            {utilitiesIncluded.includes('Kitchen') && <div className='flex flex-col items-center text-sm'>
                                 <p className='text-sm'>Kitchen</p>
                                 <FaKitchenSet />
                             </div>}
                         </div>
-
                     </CardContent>
                 </CardActionArea>
             </Card>
