@@ -3,7 +3,6 @@ import handleImagesUpload from '../../../../Utilities/ImageUpload/handleImagesUp
 import SectionTitle from '../../../../components/SectionTitle/SectionTitle';
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../../../../hooks/useAuth';
-import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -12,6 +11,9 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -43,9 +45,10 @@ function getStyles(name, personName, theme) {
 
 const AddProperty = () => {
     const { user } = useAuth();
+    const axiosSecure = useAxiosSecure();
     const theme = useTheme();
-    const [personName, setPersonName] = React.useState([]);
-
+    const [personName, setPersonName] = useState([]);
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         propertyId: "",
@@ -122,15 +125,27 @@ const AddProperty = () => {
     const handleImageUpload = async (e) => {
         const files = Array.from(e.target.files);
         const urls = await handleImagesUpload(files);
-        console.log(urls);
+        // console.log(urls);
         setFormData({ ...formData, imageUrls: urls });
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log(formData);
         // Submit the formData to the backend here
+
+        const res = await axiosSecure.post('/properties', formData)
+        if(res.data?.insertedId){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your property has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/dashboard/manageProperties')
+        }
     };
 
 
@@ -143,7 +158,7 @@ const AddProperty = () => {
             <div>
                 <SectionTitle heading={"Add a property"} subHeading={"Create your property"}></SectionTitle>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-gray-100 shadow-md rounded-md">
+            <form onSubmit={handleSubmit} className="space-y-4 max-w-4xl mx-auto p-4 bg-gray-100 shadow-md rounded-md">
 
                 <div className='flex flex-col md:flex  gap-4'>
                     <label className='form-control w-full'>
@@ -157,6 +172,7 @@ const AddProperty = () => {
                             value={formData.propertyId}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
                     <label className='form-control w-full'>
@@ -170,6 +186,7 @@ const AddProperty = () => {
                             value={formData.propertyTitle}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
                 </div>
@@ -187,6 +204,7 @@ const AddProperty = () => {
                             value={formData.address.street}
                             onChange={(e) => handleNestedChange(e, "address")}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
 
@@ -201,6 +219,8 @@ const AddProperty = () => {
                             value={formData.address.city}
                             onChange={(e) => handleNestedChange(e, "address")}
                             className="input input-bordered w-full"
+                            required
+
                         />
                     </label>
 
@@ -215,6 +235,8 @@ const AddProperty = () => {
                             value={formData.address.state}
                             onChange={(e) => handleNestedChange(e, "address")}
                             className="input input-bordered w-full"
+                            required
+
                         />
                     </label>
 
@@ -229,6 +251,8 @@ const AddProperty = () => {
                             value={formData.address.postalCode}
                             onChange={(e) => handleNestedChange(e, "address")}
                             className="input input-bordered w-full"
+                            required
+
                         />
                     </label>
                     <label className='form-control w-full'>
@@ -242,6 +266,8 @@ const AddProperty = () => {
                             value={formData.address.country}
                             onChange={(e) => handleNestedChange(e, "address")}
                             className="input input-bordered w-full"
+                            required
+
                         />
                     </label>
                 </div>
@@ -251,7 +277,7 @@ const AddProperty = () => {
                         <div className='label'>
                             <span className='label-text'>Property type *</span>
                         </div>
-                        <select value={formData.type} name='type' onChange={handleChange} className="select select-bordered">
+                        <select value={formData.type} name='type' onChange={handleChange} className="select select-bordered" required >
                             <option disabled>Select the type of your property.</option>
                             <option value={'apartment'} >Apartment</option>
                             <option value={'house'}>House</option>
@@ -272,6 +298,7 @@ const AddProperty = () => {
                             value={formData.bedrooms}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
 
@@ -286,6 +313,7 @@ const AddProperty = () => {
                             value={formData.bathrooms}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
 
@@ -300,6 +328,7 @@ const AddProperty = () => {
                             value={formData.monthlyRent}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
 
@@ -314,6 +343,7 @@ const AddProperty = () => {
                             value={formData.size}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
 
@@ -328,48 +358,12 @@ const AddProperty = () => {
                             value={formData.allowedPeople}
                             onChange={handleChange}
                             className="input input-bordered w-full"
+                            required
                         />
                     </label>
                 </div>
-
-
-                <textarea
-                    name="description"
-                    placeholder="Description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    className="textarea textarea-bordered w-full"
-                />
-
                 <div>
-                    <label className="font-semibold">Is Available:</label>
-                    <input
-                        type="checkbox"
-                        name="isAvailable"
-                        checked={formData.isAvailable}
-                        onChange={handleChange}
-                        className="ml-2"
-                    />
-                </div>
-
-                <div>
-                    <label className="font-semibold">Upload Images:</label>
-                    <input
-                        type="file"
-                        name='photos'
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="file-input file-input-bordered w-full"
-                    />
-                    <div className="flex space-x-2 mt-2">
-                        {formData.imageUrls.map((url, index) => (
-                            <img key={index} src={url} alt={`Uploaded ${index}`} className="w-20 h-20 object-cover rounded" />
-                        ))}
-                    </div>
-                </div>
-                <div>
-                    <FormControl sx={{ m: 1, width: 600 }}>
+                    <FormControl sx={{ m: 1, width: 370 }}>
                         <InputLabel id="demo-multiple-chip-label">Utilities</InputLabel>
                         <Select
                             labelId="demo-multiple-chip-label"
@@ -386,6 +380,7 @@ const AddProperty = () => {
                                 </Box>
                             )}
                             MenuProps={MenuProps}
+                            required
                         >
                             {names.map((name) => (
                                 <MenuItem
@@ -399,7 +394,78 @@ const AddProperty = () => {
                         </Select>
                     </FormControl>
                 </div>
-                <button type="submit" className="btn btn-primary w-full">
+                <div>
+                    <label className="font-semibold">Is Available:</label>
+                    <input
+                        type="checkbox"
+                        name="isAvailable"
+                        checked={formData.isAvailable}
+                        onChange={handleChange}
+                        className="ml-2"
+                        required
+                    />
+                </div>
+
+                <textarea
+                    name="description"
+                    placeholder="Description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    className="textarea textarea-bordered w-full"
+                    required
+                />
+                <h3>Owner Info</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+                    <label className='form-control w-full'>
+                        <div className='label'>
+                            <span className='label-text'>Phone Number *</span>
+                        </div>
+                        <input
+                            type="text"
+                            name="phoneNumber"
+                            placeholder="Phone number"
+                            value={formData?.contactInfo?.phoneNumber}
+                            onChange={(e) => handleNestedChange(e, "contactInfo")}
+                            className="input input-bordered w-full"
+                            required
+                        />
+                    </label>
+
+                    <label className='form-control w-full'>
+                        <div className='label'>
+                            <span className='label-text'>Contact email *</span>
+                        </div>
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            value={formData?.contactInfo?.email}
+                            onChange={(e) => handleNestedChange(e, "contactInfo")}
+                            className="input input-bordered w-full"
+                            required
+                        />
+                    </label>
+                </div>
+
+                <div>
+                    <label className="font-semibold">Upload Images:</label>
+                    <input
+                        type="file"
+                        name='photos'
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="file-input file-input-bordered w-full"
+                        required
+                    />
+                    <div className="flex space-x-2 mt-2">
+                        {formData.imageUrls.map((url, index) => (
+                            <img key={index} src={url} alt={`Uploaded ${index}`} className="w-20 h-20 object-cover rounded" />
+                        ))}
+                    </div>
+                </div>
+
+                <button disabled={!formData.imageUrls.length} type="submit" className="btn btn-primary w-full">
                     Add Property
                 </button>
             </form>

@@ -14,6 +14,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AddProperty from "../Pages/Dashboard/Host/AddProperty/AddProperty";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
+import ManageProperties from "../Pages/Dashboard/Host/ManageProperties/ManageProperties";
 
 export const router = createBrowserRouter([
     {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
             {
                 path: 'addProperties',
                 element: <AddProperty></AddProperty>,
+            },
+            {
+                path: 'manageProperties',
+                element: <ManageProperties></ManageProperties>,
             },
             // users
             {
